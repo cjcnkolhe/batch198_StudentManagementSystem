@@ -1,7 +1,9 @@
 package edu.cjc.sms.app.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminController {
@@ -11,6 +13,20 @@ public class AdminController {
 	public String preLogin() {
 		
 		return "login";
+	}
+	
+	@RequestMapping("/login")
+	public String login(@RequestParam("username") String username,@RequestParam("password") String password,Model m) {
+		
+		if(username.equals("admin") && password.equals("admin"))
+		{
+			return "adminscreen";
+		}else {
+			m.addAttribute("login_fail","Enter valid username and password");
+			return "login";
+		}
+		
+		
 	}
 
 }
