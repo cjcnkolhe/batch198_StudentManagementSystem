@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +59,7 @@
  
  <section class="vh-100 gradient-custom enroll mt-2"  id="enroll"> 
   <div class="container  h-100"> 
-    <div class="row justify-content-center h-100 w-75"> 
+    <div class="row justify-content-center h-75 w-75"> 
       <div class="col-12 col-lg-9 col-xl-7"> 
         <div class="card shadow-2-strong card-registration mt-0" style="border-radius: 15px;"> 
           <div class="card-body mt-0"> 
@@ -88,7 +90,7 @@ name="studentFullName"/>
  
                   <div class="form-outline datepicker w-100"> 
    <input type="number" class="form-control form-control-sm" id="birthdayDate" 
-name="StudentAge"/> 
+name="studentAge"/> 
                     <label for="birthdayDate" class="form-label">Student Age</label> 
                   </div> 
                 </div> 
@@ -116,18 +118,18 @@ name="StudentAge"/>
                   <h6 class="mb-2 pb-1">Student Course : </h6> 
  
                   <div class="form-check form-check-inline"> 
-  <input class="form-check-input" type="radio" name="StudentCourse" id="java" value="Java" 
+  <input class="form-check-input" type="radio" name="studentCourse" id="java" value="Java" 
 checked /> 
                     <label class="form-check-label" for="java">Java</label> 
                   </div> 
  
                   <div class="form-check form-check-inline"> 
-  <input class="form-check-input" type="radio" name="StudentCourse" id="python" value="Python" /> 
+  <input class="form-check-input" type="radio" name="studentCourse" id="python" value="Python" /> 
                     <label class="form-check-label" for="python">Python</label> 
                   </div> 
  
                   <div class="form-check form-check-inline"> 
- <input class="form-check-input" type="radio" name="StudentCourse" id="testing" value="Testing" 
+ <input class="form-check-input" type="radio" name="studentCourse" id="testing" value="Testing" 
 /> 
                     <label class="form-check-label" for="testing">Testing</label> 
                   </div> 
@@ -152,18 +154,11 @@ checked />
  
                   <select class="select form-control-sm" name="batchNumber"> 
                     <option value="#" disabled>Select Batch Number</option> 
-                    <option value="FDJ-160">FDJ-160</option> 
-                    <option value="REG-160">REG-160</option> 
-                    <option value="FDJ-161">FDJ-161</option> 
-                    <option value="REG-161">REG-162</option>
-                      <option value="FDJ-162">FDJ-162</option> 
-                    <option value="REG-162">REG-162</option> 
-                    <option value="FDJ-163">FDJ-163</option> 
-                    <option value="REG-163">REG-163</option> 
-                    <option value="FDJ-164">FDJ-164</option> 
-                    <option value="REG-164">REG-164</option> 
-                    <option value="FDJ-165">FDJ-165</option> 
-                    <option value="REG-165">REG-165</option> 
+                    <option value="FDJ-196">FDJ-196</option> 
+                    <option value="REG-198">REG-198</option> 
+                    <option value="FDJ-198">FDJ-198</option> 
+                    <option value="REG-196">REG-196</option>
+                     
                   </select> 
                   <label class="form-label select-label">Batch Number</label> 
  
@@ -186,6 +181,56 @@ checked />
 
 <section class="view" style="height:530px" id="view"> 
   <h1>View Student</h1> 
+  
+    <div class="container">
+     <table class="table table-bordered" style="font-size: 
+small"> 
+        <thead> 
+         <tr> 
+           <th>ID</th> 
+           <th>Student Name</th> 
+           <th>Student Email</th> 
+           <th>Age</th> 
+           <th>Collage Name</th> 
+           <th>Course Name</th> 
+           <th>Bath No</th> 
+           <th>Mode</th> 
+           <th>Fess Recived</th> 
+           <th>Actions</th> 
+         </tr> 
+        </thead> 
+        <tbody> 
+        <c:forEach items="${data}" var="s"> 
+          <tr> 
+           <td>${s.studentId}</td> 
+           <td>${s.studentFullName}</td> 
+           <td>${s.studentEmail}</td> 
+           <td>${s.studentAge}</td> 
+           <td>${s.studentCollageName}</td> 
+           <td>${s.studentCourse}</td> 
+           <td>${s.batchNumber}</td> 
+           <td>${s.batchMode}</td> 
+           <td>${s.feesPaid}</td> 
+           <td> 
+  
+           <div class="btn-group btn-group-sm" role="group" aria-label="..."> 
+           <button class="btn btn-outline-success">PayFees</button> 
+ <button class="btn btn-outline-primary">ShiftBatch</button> 
+           <a class="btn btn-outline-danger" href="delete?rollno=${s.studentId}">Remove</a> 
+            
+           </div> 
+             
+           </td> 
+            
+          </tr> 
+        </c:forEach> 
+         
+        </tbody> 
+      
+     </table>
+    </div>
+  
+ 
  </section>
  
   
