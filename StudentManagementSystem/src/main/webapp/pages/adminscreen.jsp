@@ -180,7 +180,32 @@ checked />
 
 
 <section class="view" style="height:530px" id="view"> 
-  <h1>View Student</h1> 
+  <h1 class="text-center ">Student Details..!</h1> 
+     <div class="text-center w-100"> 
+     <form action="search" class="w-100"> 
+      <select class="select form-control-sm border border-primary" 
+name="batchNumber"> 
+                    <option value="#" slected>Select Batch Number</option> 
+                   <option value="FDJ-196">FDJ-196</option> 
+                    <option value="REG-198">REG-198</option> 
+                    <option value="FDJ-198">FDJ-198</option> 
+                    <option value="REG-196">REG-196</option>
+                  </select> 
+                  
+                   <select class="select form-control-sm border border-primary" name="batchMode"> 
+                    <option value="#" slected>Select Batch Mode</option> 
+                   <option value="online">ONLINE</option> 
+                    <option value="offline">OFFLINE</option> 
+                   
+                  </select> 
+                <button class="btn btn-outline-primary mb-1">Search</button>                 
+           </form> 
+   <marquee> 
+        <h1 style="color: red;"> 
+           ${message} 
+        </h1> 
+   </marquee> 
+     </div> 
   
     <div class="container">
      <table class="table table-bordered" style="font-size: 
@@ -214,7 +239,7 @@ small">
            <td> 
   
            <div class="btn-group btn-group-sm" role="group" aria-label="..."> 
-           <button class="btn btn-outline-success">PayFees</button> 
+           <a href="fees?rollno=${s.studentId}" class="btn btn-outline-success">PayFees</a> 
  <button class="btn btn-outline-primary">ShiftBatch</button> 
            <a class="btn btn-outline-danger" href="delete?rollno=${s.studentId}">Remove</a> 
             

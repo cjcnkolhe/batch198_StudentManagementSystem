@@ -59,5 +59,47 @@ public class AdminController {
 		return "adminscreen";
 	}
 	
+	
+	@RequestMapping("/search")
+	public String getStudentBatch(@RequestParam("batchNumber") String batchNumber,@RequestParam("batchMode") String batchMode,Model m) {
+		
+		
+		List<Student> result=ssi.searchStudentByBatch(batchNumber,batchMode);
+		
+		   if(result.size()>0)
+		   {
+			   m.addAttribute("data", result);
+		   }else {
+			   List<Student> list  =ssi.getAllStudents();
+				m.addAttribute("data", list);
+				m.addAttribute("message","No record found for the Batch  "+batchNumber+"  "+batchMode);
+		   }
+		
+		
+		return "adminscreen";
+	}
+	
+	@RequestMapping("/fees")
+	public String onFees(@RequestParam("rollno") int studentId,Model m)
+	{
+		Student stu=ssi.getSingleStudent(studentId);
+		m.addAttribute("st",stu);
+		return "fees";
+	}
+	
+	@RequestMapping("/payfees")
+	public String payFees(@RequestParam("studentid")int studentId,@RequestParam("ammount") double ammount,Model m) {
+		
+		      ssi.payFees(studentId,ammount);
+		
+		  List<Student> list  =ssi.getAllStudents();
+			m.addAttribute("data", list);
+		return "adminscreen";
+	}
+	
+	
+	
+	
+	
 
 }
